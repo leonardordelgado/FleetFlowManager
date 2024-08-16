@@ -12,7 +12,7 @@ class FleetFlowApp {
     constructor() {
         // Cria uma instância do aplicativo Express e a atribui à propriedade 'App'
         this.App = (0, express_1.default)();
-        this.router = Routers_1.default.router(this.App);
+        this.router = Routers_1.default.router(this.App); // Configura as rotas com o roteador personalizado arquivo principal index.ts
     }
 }
 // Exporta uma instância da classe 'FleetFlowApp' como o padrão deste módulo
