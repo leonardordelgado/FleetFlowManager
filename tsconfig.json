@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "module":"CommonJS",
+        "outDir": "dist",
+        "typeRoots": [
+            "../node_modules/@types"
+        ],
+    },
+    "include": [
+        "**/*.ts",
+        ".ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "buildOnSave": true,
+    "compileOnSave": true
+}
