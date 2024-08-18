@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Importa o módulo 'express' para criar e gerenciar o servidor web
 const express_1 = __importDefault(require("express"));
 const Routers_1 = __importDefault(require("./SRC/Routers"));
+const index_1 = __importDefault(require("./SRC/database/config/index"));
 // Define a classe principal da aplicação chamada 'FleetFlowApp'
 class FleetFlowApp {
     // Construtor da classe, responsável por inicializar a aplicação Express
@@ -13,6 +14,9 @@ class FleetFlowApp {
         // Cria uma instância do aplicativo Express e a atribui à propriedade 'App'
         this.App = (0, express_1.default)();
         this.router = Routers_1.default.router(this.App); // Configura as rotas com o roteador personalizado arquivo principal index.ts
+        this._db = new index_1.default;
+        this._db.getSequelize();
+        this._db.TestDb();
     }
 }
 // Exporta uma instância da classe 'FleetFlowApp' como o padrão deste módulo
