@@ -8,18 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const clientes_1 = __importDefault(require("../database/models/clientes"));
 exports.default = new class ServicesClientes {
-    serviceGetClientes() {
+    getClientes() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return {
-                    id: 1,
-                    Cliente: "Labs A+"
-                };
+                const resposta = (yield clientes_1.default.findAll({
+                    attributes: ['id', 'nome']
+                })).map(cliente => ({
+                    id: cliente.dataValues.id,
+                    nome: cliente.dataValues.nome
+                }));
+                return resposta;
             }
             catch (error) {
-                throw new Error(`rro ao buscar clientes ++++++${error}`);
+                console.error('Erro ao buscar clientes:', error);
+                throw new Error('Não foi possível buscar os clientes.');
             }
         });
     }

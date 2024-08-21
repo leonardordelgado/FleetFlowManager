@@ -17,12 +17,16 @@ class ControllersCliente {
     static GetCliente(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const clientes = yield servicesClientes_1.default.serviceGetClientes();
+                const clientes = yield servicesClientes_1.default.getClientes();
                 res.status(201).json(clientes);
             }
             catch (error) {
                 res.status(500).send(`Erro encontrado na requisição +++++++${error}`);
             }
+        });
+    }
+    static GetNomeCliente(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
         });
     }
 }

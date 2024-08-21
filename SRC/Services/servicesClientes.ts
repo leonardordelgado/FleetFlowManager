@@ -1,13 +1,21 @@
-import ICLiente from "../interfaces/InterfaceCliente"
-export default new class ServicesClientes{
-    async serviceGetClientes(){
+import ICliente from '../interfaces/InterfaceCliente';
+import cliente from '../database/models/clientes';
+
+export default new class ServicesClientes {
+    async getClientes(): Promise<ICliente[]> {
         try {
-            return {
-                id:1,
-                Cliente:"Labs A+"
-            }
+            const resposta: ICliente[] = (await cliente.findAll({
+                attributes: ['id', 'nome'] 
+            })).map(cliente => ({
+                id: cliente.dataValues.id,
+                nome: cliente.dataValues.nome
+            }));
+            return resposta;
         } catch (error) {
-            throw new Error(`rro ao buscar clientes ++++++${error}`)
+            console.error('Erro ao buscar clientes:', error); 
+            throw new Error('Não foi possível buscar os clientes.');
         }
     }
+
+    
 }
