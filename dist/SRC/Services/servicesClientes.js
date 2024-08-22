@@ -31,4 +31,22 @@ exports.default = new class ServicesClientes {
             }
         });
     }
+    getNameCliente(nome) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const resposta = yield clientes_1.default.findOne({
+                    where: { nome },
+                    attributes: ["id", "nome"]
+                });
+                if (resposta) {
+                    return resposta.dataValues;
+                }
+                return null;
+            }
+            catch (error) {
+                console.error('Erro ao buscar clientes:', error);
+                throw new Error('Não foi possível buscar os clientes.');
+            }
+        });
+    }
 };

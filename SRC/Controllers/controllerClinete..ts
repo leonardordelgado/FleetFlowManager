@@ -13,7 +13,14 @@ class ControllersCliente {
     }
 
     static async GetNomeCliente(req:Request, res:Response):Promise<void>{
-        
+        try {
+            const {nome} = req.params;
+            console.log({nome})
+            const cliente: ICLiente = await servicesClientes.getNameCliente(nome)
+            res.status(201).json(cliente)
+        } catch (error) {
+            res.status(500).send(`Erro encontrado na requisição +++++++${error}`)
+        }
     }
 }
 

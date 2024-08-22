@@ -27,6 +27,15 @@ class ControllersCliente {
     }
     static GetNomeCliente(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { nome } = req.params;
+                console.log({ nome });
+                const cliente = yield servicesClientes_1.default.getNameCliente(nome);
+                res.status(201).json(cliente);
+            }
+            catch (error) {
+                res.status(500).send(`Erro encontrado na requisição +++++++${error}`);
+            }
         });
     }
 }
